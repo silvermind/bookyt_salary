@@ -3,7 +3,7 @@ prawn_document(:filename => "#{resource.to_s}.pdf", :renderer => PayslipDocument
   employee = resource.employee
 
   # Letter header
-  pdf.letter_header(employer, employee, resource.to_s, nil)
+  pdf.letter_header(employer, employee, resource.to_s, Date.today)
 
   # Line Items
   pdf.salary_table(resource)
