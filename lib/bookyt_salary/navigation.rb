@@ -7,8 +7,8 @@ module BookytSalary
         salaries.item :new_salary, t_title(:new, Salary), select_employee_salaries_path
         
         salaries.item :divider, "", '#', :html => {:class => 'divider' }
-        salaries.item :statistics, t('salary_reports.statistics.title'), url_for('/salary_reports/statistics')
-        salaries.item :yearly_ahv_statement, t('salary_reports.yearly_ahv_statement.title'), url_for("/salary_reports/yearly_ahv_statement")
+        salaries.item :statistics, t('salary_reports.statistics.title'), url_for('/salary_reports/statistics'), if: Proc.new { can? :yearly_ahv_statement, :salary_reports }
+        salaries.item :yearly_ahv_statement, t('salary_reports.yearly_ahv_statement.title'), url_for("/salary_reports/yearly_ahv_statement"), if: Proc.new { can? :statistics, :salary_reports }
 
         salaries.item :divider, "", '#', :html => {:class => 'divider' }
         salaries.item :salary_booking_templates, t_title(:index, SalaryBookingTemplate), salary_booking_templates_path, if: Proc.new { can? :index, SalaryBookingTemplate }
