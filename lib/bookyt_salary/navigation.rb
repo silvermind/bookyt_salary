@@ -2,7 +2,7 @@ module BookytSalary
   module Navigation
     def setup_bookyt_salary(navigation)
       navigation.item :salaries, t_title(:index, Salary), "#",
-                   :if => Proc.new { user_signed_in? } do |salaries|
+                   :if => Proc.new { user_signed_in? and can? :index, Salary } do |salaries|
         salaries.item :salary_list, t_title(:index, Salary), salaries_path, :highlights_on => /\/salaries($|\/[0-9]*($|\/.*))/
         salaries.item :new_salary, t_title(:new, Salary), select_employee_salaries_path
         salaries.item :divider, "", '#', :html => {:class => 'divider' }
