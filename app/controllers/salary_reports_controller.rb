@@ -13,6 +13,7 @@ class SalaryReportsController < ApplicationController
   end
 
   def yearly_ahv_statement
+    authorize! :yearly_ahv_statement, :salary_reports
     @employments = Employment.valid_during(@by_date).all
   end
 
@@ -25,6 +26,7 @@ class SalaryReportsController < ApplicationController
   end
 
   def statistics
+    authorize! :statistics, :salary_reports
     @year = @by_date.first.year
 
     @salary_booking_templates = SalaryBookingTemplate.all
