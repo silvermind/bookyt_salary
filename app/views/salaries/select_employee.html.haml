@@ -3,7 +3,7 @@
 = simple_form_for resource, :url => new_salary_path, :method => :get do |f|
   .row-fluid
     .span12
-      =f.association :employee, :as => :combobox
+      =f.association :employee, :as => :combobox, :collection => Employee.accessible_by(current_ability, :show)
   .row-fluid
     .span12
       = f.input :duration_from, :as => :date_field
